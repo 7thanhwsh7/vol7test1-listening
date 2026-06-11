@@ -166,6 +166,76 @@
   }
   .next-part-btn:hover{background:var(--gold-dim)}
 
+
+  /* ── REVIEW BUTTON ── */
+  .review-btn{
+    margin-top:20px;width:100%;padding:12px;background:transparent;
+    border:1px solid var(--gold);color:var(--gold);border-radius:3px;
+    font-family:'Be Vietnam Pro',sans-serif;font-size:.82rem;font-weight:600;
+    letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all .2s;
+  }
+  .review-btn:hover{background:var(--gold);color:#fff}
+
+  /* ── REVIEW SCREEN ── */
+  #review-screen{
+    display:none;position:fixed;inset:0;z-index:250;
+    background:var(--cream);overflow-y:auto;
+  }
+  #review-topbar{
+    position:sticky;top:0;z-index:10;
+    background:#fff;border-bottom:1px solid var(--border);
+    display:flex;align-items:center;gap:20px;padding:14px 40px;
+    flex-wrap:wrap;
+  }
+  .review-logo{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--gold)}
+  .review-title-bar{font-size:.85rem;color:var(--muted);display:flex;gap:8px;align-items:center;flex:1}
+  .review-sep{color:var(--border)}
+  #review-score-bar{font-weight:700;color:var(--ink)}
+  .review-legend{display:flex;gap:14px;margin-left:auto}
+  .leg{font-size:.75rem;font-weight:600;padding:4px 10px;border-radius:2px}
+  .leg.correct{background:#e8f5e9;color:#2e7d32}
+  .leg.wrong{background:#fdecea;color:#c62828}
+  .leg.blank{background:#f5f5f5;color:#999}
+
+  #review-body{max-width:820px;margin:0 auto;padding:36px 40px 60px}
+  .rv-part{margin-bottom:48px}
+  .rv-part-title{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;margin-bottom:6px}
+  .rv-part-rule{width:40px;height:3px;background:var(--gold);margin-bottom:20px}
+  .rv-instr{font-size:.82rem;color:var(--muted);margin-bottom:16px;line-height:1.6;padding:10px 14px;border-left:3px solid var(--gold);background:#fff}
+  .rv-section-title{font-size:.85rem;font-weight:700;color:var(--ink);margin:20px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+  .rv-body{font-size:.9rem;line-height:2;color:var(--ink)}
+  .rv-body p{margin-bottom:4px}
+
+  /* Answer badge inline */
+  .ans-badge{
+    display:inline-flex;align-items:center;gap:5px;
+    padding:2px 10px;border-radius:12px;font-size:.8rem;font-weight:600;
+    vertical-align:middle;margin:0 3px;
+  }
+  .ans-badge.correct{background:#e8f5e9;color:#2e7d32;border:1px solid #a5d6a7}
+  .ans-badge.wrong{background:#fdecea;color:#c62828;border:1px solid #ef9a9a}
+  .ans-badge.blank{background:#f5f5f5;color:#999;border:1px solid #ddd}
+  .badge-num{font-size:.68rem;opacity:.7;margin-right:2px}
+
+  /* MCQ review */
+  .rv-mcq-opt{
+    display:flex;align-items:center;gap:10px;
+    padding:9px 14px;margin-bottom:6px;border-radius:3px;
+    font-size:.88rem;border:1px solid var(--border);
+  }
+  .rv-mcq-opt.chosen-correct{background:#e8f5e9;border-color:#a5d6a7;color:#2e7d32}
+  .rv-mcq-opt.chosen-wrong{background:#fdecea;border-color:#ef9a9a;color:#c62828}
+  .rv-mcq-opt.not-chosen{background:#fafafa;color:#999}
+  .rv-opt-key{font-weight:700;min-width:18px}
+
+  /* Match review row */
+  .rv-match-row{display:flex;align-items:center;gap:12px;margin-bottom:8px;font-size:.88rem}
+  .rv-match-label{min-width:180px;color:var(--ink)}
+  @media(max-width:600px){
+    #review-topbar{padding:12px 16px}
+    #review-body{padding:24px 16px}
+  }
+
   /* ── RESULT ────────────────────────────── */
   #result{
     display:none;position:fixed;inset:0;z-index:200;
@@ -214,6 +284,68 @@
   .q-num{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:var(--gold);color:#fff;font-size:.68rem;font-weight:700;margin:0 4px;vertical-align:middle;flex-shrink:0}
   .ans-input{vertical-align:middle}
 
+
+  
+
+  /* ══ HIGHLIGHT ══════════════════════════════ */
+  #hl-toolbar {
+    position: fixed;
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    gap: 5px;
+    background: #1e1e1e;
+    border-radius: 8px;
+    padding: 7px 10px;
+    box-shadow: 0 4px 24px rgba(0,0,0,.45);
+    pointer-events: auto;
+    /* arrow below */
+  }
+  #hl-toolbar::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: #1e1e1e;
+  }
+  .hl-swatch {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,.25);
+    cursor: pointer;
+    transition: transform .15s, border-color .15s;
+    flex-shrink: 0;
+  }
+  .hl-swatch:hover { transform: scale(1.2); border-color: #fff; }
+  .hl-swatch.s-yellow { background: #FFE566; }
+  .hl-swatch.s-green  { background: #72E5A0; }
+  .hl-swatch.s-pink   { background: #FF8FAB; }
+  .hl-swatch.s-blue   { background: #7EC8E3; }
+  .hl-div { width: 1px; height: 20px; background: rgba(255,255,255,.2); margin: 0 2px; }
+  .hl-erase {
+    background: none;
+    border: 1.5px solid rgba(255,255,255,.35);
+    color: #ccc;
+    border-radius: 5px;
+    padding: 3px 8px;
+    font-size: .65rem;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: .5px;
+    transition: all .15s;
+    white-space: nowrap;
+  }
+  .hl-erase:hover { border-color: #fff; color: #fff; }
+
+  /* The marks themselves */
+  mark.hy { background: #FFE566; color: inherit; border-radius: 2px; padding: 0 1px; }
+  mark.hg { background: #72E5A0; color: inherit; border-radius: 2px; padding: 0 1px; }
+  mark.hp { background: #FF8FAB; color: inherit; border-radius: 2px; padding: 0 1px; }
+  mark.hb { background: #7EC8E3; color: inherit; border-radius: 2px; padding: 0 1px; }
+  /* ════════════════════════════════════════════ */
+
   /* Scrollbar */
   ::-webkit-scrollbar{width:4px}
   ::-webkit-scrollbar-track{background:transparent}
@@ -257,13 +389,11 @@
       <a onclick="goTab(3);return false" id="tab3">P4</a>
     </div>
     <div class="sb-grid" id="sq-grid"></div>
-    <div class="sb-footer">
-      <button id="btn-submit">Nộp bài</button>
-    </div>
+    <div class="sb-footer"></div>
   </div>
 
   <!-- Main -->
-  <div id="main">
+  <div id="main" class="hl-zone">
 
     <!-- ── PART 1 ── -->
     <div class="part-section active" id="sec-0">
@@ -461,7 +591,26 @@
       <div class="score-denom">/ 40</div>
     </div>
     <div class="result-note">Dữ liệu đã được ghi nhận thành công.<br>Kết quả đã được lưu vào hệ thống G.EDU.</div>
+    <button class="review-btn" onclick="openReview()">Xem lại bài làm →</button>
   </div>
+</div>
+
+<!-- ── REVIEW SCREEN ── -->
+<div id="review-screen">
+  <div id="review-topbar">
+    <div class="review-logo">G.EDU</div>
+    <div class="review-title-bar">
+      <span id="review-student-name-bar"></span>
+      <span class="review-sep">·</span>
+      <span id="review-score-bar"></span>
+    </div>
+    <div class="review-legend">
+      <span class="leg correct">✓ Đúng</span>
+      <span class="leg wrong">✗ Sai</span>
+      <span class="leg blank">— Bỏ trống</span>
+    </div>
+  </div>
+  <div id="review-body" class="hl-zone"></div>
 </div>
 
 <script>
@@ -559,9 +708,18 @@ const mapOpts = [
   {q:17,label:'Wood'},{q:18,label:'China'},{q:19,label:'Wool'},{q:20,label:'Drinks'}
 ];
 const infoLetters = ['A','B','C','D','E','F','G','H','I'];
+const infoLabels = {
+  'A':'A – pure','B':'B – expensive','C':'C – perfumed',
+  'D':'D – best value for money','E':'E – imported',
+  'F':'F – made in the village','G':'G – popular overseas',
+  'H':'H – prize-winning','I':'I – coloured'
+};
 const mapLetters  = ['A','B','C','D','E','F','G','H'];
+const mapLabels = {
+  'A':'A','B':'B','C':'C','D':'D','E':'E','F':'F','G':'G','H':'H'
+};
 
-function buildSelect(container, items, letters, groupLabel){
+function buildSelect(container, items, letters, groupLabel, labelMap){
   items.forEach(({q,label})=>{
     const row = document.createElement('div');
     row.className = 'match-row';
@@ -569,8 +727,8 @@ function buildSelect(container, items, letters, groupLabel){
     const sel = document.createElement('select');
     sel.className = 'match-select';
     sel.dataset.q = q;
-    sel.innerHTML = `<option value="">— select —</option>` +
-      letters.map(l=>`<option value="${l}">${l}</option>`).join('');
+    sel.innerHTML = `<option value="">— chọn —</option>` +
+      letters.map(l=>`<option value="${l}">${labelMap ? labelMap[l] : l}</option>`).join('');
     sel.addEventListener('change',()=>{
       ANS[q] = sel.value;
       sel.classList.toggle('filled',!!sel.value);
@@ -581,8 +739,8 @@ function buildSelect(container, items, letters, groupLabel){
   });
 }
 
-buildSelect(document.getElementById('q11-16'), p2info, infoLetters);
-buildSelect(document.getElementById('q17-20'), mapOpts, mapLetters);
+buildSelect(document.getElementById('q11-16'), p2info, infoLetters, '', infoLabels);
+buildSelect(document.getElementById('q17-20'), mapOpts, mapLetters, '', null);
 
 // ── Part 3 Q26-30 selects ──────────────────────
 const p3members = [
@@ -590,7 +748,12 @@ const p3members = [
   {q:29,label:'Bill'},{q:30,label:'Linda'}
 ];
 const sectionLetters = ['A','B','C','D','E','F','G'];
-buildSelect(document.getElementById('q26-30'), p3members, sectionLetters);
+const sectionLabels = {
+  'A':'A – Abstract','B':'B – Acknowledgements','C':'C – Bibliography',
+  'D':'D – Discussion','E':'E – Literature review',
+  'F':'F – Methodology','G':'G – Results'
+};
+buildSelect(document.getElementById('q26-30'), p3members, sectionLetters, '', sectionLabels);
 
 // ── MCQ ────────────────────────────────────────
 document.querySelectorAll('.mcq-options').forEach(group=>{
@@ -677,7 +840,7 @@ function submitExam(){
   document.getElementById('r-score').textContent = score;
   document.getElementById('result').style.display = 'flex';
 
-  // Send to Google Sheets
+  // Send to Google Sheets with retry
   const params = new URLSearchParams({
     test_name: TEST_NAME,
     name: studentName,
@@ -685,8 +848,334 @@ function submitExam(){
     score: score,
     answers: JSON.stringify(ANS)
   });
-  fetch(`${SCRIPT_URL}?${params.toString()}`, {mode:'no-cors'}).catch(()=>{});
+  const url = `${SCRIPT_URL}?${params.toString()}`;
+
+  function sendWithRetry(attempts){
+    fetch(url, {mode:'no-cors'})
+      .catch(()=>{
+        if(attempts > 1){
+          setTimeout(()=> sendWithRetry(attempts - 1), 2000);
+        }
+      });
+  }
+
+  // Gửi ngay, và gửi thêm 1 lần dự phòng sau 3 giây
+  sendWithRetry(3);
+  setTimeout(()=> fetch(url, {mode:'no-cors'}).catch(()=>{}), 3000);
 }
+
+// ── REVIEW ────────────────────────────────────
+function openReview(){
+  document.getElementById('result').style.display = 'none';
+  document.getElementById('review-screen').style.display = 'block';
+  document.getElementById('review-student-name-bar').textContent = studentName + ' · ' + studentCls;
+  document.getElementById('review-score-bar').textContent = document.getElementById('r-score').textContent + ' / 40';
+  buildReview();
+}
+
+function badge(q){
+  const userAns = (ANS[q]||'').toString().trim();
+  if(!userAns) return `<span class="ans-badge blank"><span class="badge-num">${q}</span>Bỏ trống</span>`;
+  return `<span class="ans-badge wrong"><span class="badge-num">${q}</span>${userAns}</span>`;
+}
+
+function buildReview(){
+  const body = document.getElementById('review-body');
+  body.innerHTML = '';
+
+  // ── PART 1 ──
+  body.innerHTML += `
+  <div class="rv-part">
+    <div class="rv-part-title">Part 1</div>
+    <div class="rv-part-rule"></div>
+    <div class="rv-instr"><strong>Questions 1–10</strong> · Complete the notes below. Write ONE WORD AND/OR A NUMBER for each answer.</div>
+    <div class="rv-section-title">Wedding arrangements – Clarence House Hotel</div>
+    <div class="rv-body">
+      <p>Available date: 1st June</p>
+      <p>The Oxford Suite has:</p>
+      <p>• a dining room with a good view of the ${badge(1)}</p>
+      <p>• a private garden for ${badge(2)} and for the wedding ceremony</p>
+      <p>• an area suitable for dancing</p>
+      <p style="margin-top:10px">The wedding package includes:</p>
+      <p>• use of the Oxford Suite &nbsp;•&nbsp; a three-course meal</p>
+      <p>• room arranged with ${badge(3)} tables</p>
+      <p>• table ${badge(4)} included</p>
+      <p>• white tablecloths and chairs</p>
+      <p>• personalised printed ${badge(5)}</p>
+      <p>• a late-evening buffet with a choice of ${badge(6)} and hot drinks</p>
+      <p>• Music: hotel will organise a band (not included in price)</p>
+      <p style="margin-top:10px">Total cost of package: £ ${badge(7)}</p>
+      <p>Can also recommend a ${badge(8)} supplier (new company)</p>
+      <p>Wedding coordinator Sarah ${badge(9)}</p>
+      <p>Date arranged for visit: ${badge(10)} at 11.30 a.m</p>
+    </div>
+  </div>`;
+
+  // ── PART 2 ──
+  const p2info = [{q:11,label:'hand cream'},{q:12,label:'jam'},{q:13,label:'soaps'},{q:14,label:'candles'},{q:15,label:'ice cream'},{q:16,label:'shampoo'}];
+  const mapQ   = [{q:17,label:'Wood'},{q:18,label:'China'},{q:19,label:'Wool'},{q:20,label:'Drinks'}];
+
+  let matchRows11 = p2info.map(({q,label})=>`<div class="rv-match-row"><div class="rv-match-label"><strong>${q}</strong> ${label}</div>${badge(q)}</div>`).join('');
+  let matchRows17 = mapQ.map(({q,label})=>`<div class="rv-match-row"><div class="rv-match-label"><strong>${q}</strong> ${label}</div>${badge(q)}</div>`).join('');
+
+  body.innerHTML += `
+  <div class="rv-part">
+    <div class="rv-part-title">Part 2</div>
+    <div class="rv-part-rule"></div>
+    <div class="rv-instr"><strong>Questions 11–16</strong> · Choose SIX correct letters, A–I.</div>
+    <div class="rv-section-title">Products</div>
+    ${matchRows11}
+    <div class="rv-instr" style="margin-top:20px"><strong>Questions 17–20</strong> · Label the map. Choose A–H.</div>
+    ${matchRows17}
+  </div>`;
+
+  // ── PART 3 ──
+  const mcqData = [
+    {q:21, stem:'Jen states that Irene has recently', opts:['finished planting the experiment.','taken an extended break.','spent a lot of time in the laboratory.']},
+    {q:22, stem:"What is Bill's attitude toward Kim?", opts:['He is grateful for her contribution.','He thinks she is stylish.','He resents her avoiding lab work.']},
+    {q:23, stem:'Jen believes that their project', opts:['would be easier for boys good at maths.','would fail without Kim and Irene\u2019s input.','is almost done because Kim has finished the data analysis.']},
+    {q:24, stem:'Bill and Jen are irritated with Linda because', opts:['she is always late with her work.','she fails to keep in touch enough.','she thinks the project is an easy grade.']},
+    {q:25, stem:'Jen was asked to join the team because she', opts:['is popular with everyone on the team.','always reads all of her assignments.','enjoys talking to Professor Cooper.']}
+  ];
+
+  let mcqHTML = mcqData.map(({q,stem,opts})=>{
+    const chosen = (ANS[q]||'').toString().trim().toUpperCase();
+    const letters = ['A','B','C'];
+    const optsHTML = opts.map((text,i)=>{
+      const letter = letters[i];
+      const isChosen = chosen === letter;
+      let cls = 'not-chosen';
+      if(isChosen) cls = 'chosen-wrong'; // no correct answer shown
+      return `<div class="rv-mcq-opt ${cls}"><span class="rv-opt-key">${letter}.</span>${text}${isChosen?' <span style="font-size:.75rem;opacity:.7">(đáp án của bạn)</span>':''}</div>`;
+    }).join('');
+    return `<div class="q-block" style="margin-bottom:20px">
+      <div style="font-size:.88rem;font-weight:600;margin-bottom:8px"><strong>${q}.</strong> ${stem}</div>
+      ${optsHTML}
+    </div>`;
+  }).join('');
+
+  const p3members = [{q:26,label:'Irene'},{q:27,label:'Kim'},{q:28,label:'Jen'},{q:29,label:'Bill'},{q:30,label:'Linda'}];
+  let matchRows26 = p3members.map(({q,label})=>`<div class="rv-match-row"><div class="rv-match-label"><strong>${q}</strong> ${label}</div>${badge(q)}</div>`).join('');
+
+  body.innerHTML += `
+  <div class="rv-part">
+    <div class="rv-part-title">Part 3</div>
+    <div class="rv-part-rule"></div>
+    <div class="rv-instr"><strong>Questions 21–25</strong> · Choose the correct answer.</div>
+    <div class="rv-section-title">Group Project</div>
+    ${mcqHTML}
+    <div class="rv-instr" style="margin-top:8px"><strong>Questions 26–30</strong> · Which section will each group member write up? Choose A–G.</div>
+    ${matchRows26}
+  </div>`;
+
+  // ── PART 4 ──
+  body.innerHTML += `
+  <div class="rv-part">
+    <div class="rv-part-title">Part 4</div>
+    <div class="rv-part-rule"></div>
+    <div class="rv-instr"><strong>Questions 31–40</strong> · Complete the notes below. Write NO MORE THAN TWO WORDS for each answer.</div>
+    <div class="rv-section-title">Impact of cars in Australia (1940s–1990s)</div>
+    <div class="rv-body">
+      <p style="color:var(--gold);font-weight:700;font-size:.82rem;letter-spacing:1px">1940s</p>
+      <p>• One person in eight owned a car</p>
+      <p>• ${badge(31)} transport was used for 60% of journeys</p>
+      <p>• Buses: Problems – crowded and ${badge(32)} &nbsp;·&nbsp; Advantage – affordable</p>
+      <p>• Cars were associated with ${badge(33)}</p>
+      <p>• Problems: i. cost &nbsp; ii. spare parts imported &nbsp; iii. fuel restrictions</p>
+      <p>• iv. high ${badge(34)} on cars</p>
+      <p>• Result of pressure from motorists – new ${badge(35)} in Australia in 1949</p>
+      <p style="color:var(--gold);font-weight:700;font-size:.82rem;letter-spacing:1px;margin-top:12px">1960s</p>
+      <p>• Cars were cheaper and more reliable &nbsp;·&nbsp; More people lived in suburbs</p>
+      <p>• Main streets were congested and ${badge(36)} (and usually straight)</p>
+      <p>• New streets built with curves to make drivers slow down</p>
+      <p style="color:var(--gold);font-weight:700;font-size:.82rem;letter-spacing:1px;margin-top:12px">1970s</p>
+      <p>• Roads had more ${badge(37)} &nbsp;·&nbsp; More commuters</p>
+      <p>• Car use affected the ${badge(38)} between people</p>
+      <p>• New types of ${badge(39)} were designed to attract motorists</p>
+      <p style="color:var(--gold);font-weight:700;font-size:.82rem;letter-spacing:1px;margin-top:12px">1980s and 1990s</p>
+      <p>• Less business in town centres because of the introduction of ${badge(40)}</p>
+      <p>• Introduction of drive-in facilities, e.g. restaurants</p>
+    </div>
+  </div>`;
+}
+
+
+
+
+
+// ══ HIGHLIGHT SYSTEM ════════════════════════════
+(function () {
+  'use strict';
+
+  const toolbar  = document.getElementById('hl-toolbar');
+  const eraseBtn = document.getElementById('hl-erase-btn');
+  if (!toolbar) return;   // safety
+
+  let pendingRange = null;   // stored range while toolbar is open
+  let hideDelay    = null;
+
+  /* ── Position toolbar centered above rect ── */
+  function positionToolbar(rect) {
+    toolbar.style.display = 'flex';
+    const tw = toolbar.offsetWidth || 200;
+    let left = rect.left + rect.width / 2 - tw / 2;
+    let top  = rect.top  - toolbar.offsetHeight - 10;
+    // Keep inside viewport
+    left = Math.max(6, Math.min(left, window.innerWidth - tw - 6));
+    if (top < 6) top = rect.bottom + 10;  // flip below if no room above
+    toolbar.style.left = left + 'px';
+    toolbar.style.top  = top  + 'px';
+  }
+
+  function hideToolbar() {
+    toolbar.style.display = 'none';
+    pendingRange = null;
+  }
+
+  /* ── Show when user finishes selecting text ── */
+  function onSelectionChange() {
+    const sel = window.getSelection();
+    if (!sel || sel.isCollapsed || !sel.toString().trim()) return;
+
+    // Must be inside #main or #review-body
+    const anchor = sel.anchorNode;
+    const main   = document.getElementById('main');
+    const review = document.getElementById('review-body');
+    const ok = (main   && main.contains(anchor))
+            || (review && review.contains(anchor));
+    if (!ok) return;
+
+    try {
+      const range = sel.getRangeAt(0);
+      pendingRange = range.cloneRange();   // save before it disappears
+      const rect = range.getBoundingClientRect();
+      positionToolbar(rect);
+    } catch (e) { /* ignore */ }
+  }
+
+  document.addEventListener('mouseup', function (e) {
+    if (toolbar.contains(e.target)) return;
+    clearTimeout(hideDelay);
+    // Small delay so selection is finalized
+    setTimeout(onSelectionChange, 10);
+  });
+
+  // Hide when clicking anywhere outside toolbar (and not selecting)
+  document.addEventListener('mousedown', function (e) {
+    if (toolbar.contains(e.target)) return;
+    clearTimeout(hideDelay);
+    hideDelay = setTimeout(function () {
+      const sel = window.getSelection();
+      if (!sel || sel.isCollapsed) hideToolbar();
+    }, 200);
+  });
+
+  /* ── Apply a color ── */
+  function applyColor(cls) {
+    // Restore the saved range
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    if (pendingRange) sel.addRange(pendingRange);
+
+    if (!sel || sel.isCollapsed) { hideToolbar(); return; }
+
+    try {
+      const range = sel.getRangeAt(0);
+      // Remove any existing mark that fully contains this range
+      stripMarksInRange(range);
+
+      const mark = document.createElement('mark');
+      mark.className = cls;
+      try {
+        range.surroundContents(mark);
+      } catch (e) {
+        // Cross-element: wrap extracted contents
+        const frag = range.extractContents();
+        // Strip nested marks from fragment
+        frag.querySelectorAll('mark.hy,mark.hg,mark.hp,mark.hb').forEach(unwrapMark);
+        mark.appendChild(frag);
+        range.insertNode(mark);
+      }
+      sel.removeAllRanges();
+    } catch (e) { /* ignore */ }
+    hideToolbar();
+  }
+
+  /* ── Erase highlights in current selection ── */
+  function eraseColor() {
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    if (pendingRange) sel.addRange(pendingRange);
+
+    if (!sel || sel.isCollapsed) { hideToolbar(); return; }
+    try {
+      const range = sel.getRangeAt(0);
+      stripMarksInRange(range);
+      sel.removeAllRanges();
+    } catch (e) { /* ignore */ }
+    hideToolbar();
+  }
+
+  /* ── Strip marks that intersect a range ── */
+  function stripMarksInRange(range) {
+    const container = range.commonAncestorContainer;
+    const root = container.nodeType === 1 ? container : container.parentElement;
+    if (!root) return;
+    // Walk up to find if we're already inside a mark
+    let node = container;
+    while (node && node !== document.body) {
+      if (node.nodeType === 1 && node.tagName === 'MARK') { unwrapMark(node); return; }
+      node = node.parentNode;
+    }
+    // Otherwise find all descendant marks that intersect
+    root.querySelectorAll('mark.hy,mark.hg,mark.hp,mark.hb').forEach(function (m) {
+      try { if (range.intersectsNode(m)) unwrapMark(m); } catch(e){}
+    });
+  }
+
+  function unwrapMark(m) {
+    if (!m.parentNode) return;
+    const frag = document.createDocumentFragment();
+    while (m.firstChild) frag.appendChild(m.firstChild);
+    m.parentNode.replaceChild(frag, m);
+  }
+
+  /* ── Wire up swatches & erase ── */
+  toolbar.querySelectorAll('.hl-swatch').forEach(function (sw) {
+    sw.addEventListener('mousedown', function (e) {
+      e.preventDefault();    // prevent selection from collapsing
+      applyColor(sw.dataset.cls);
+    });
+  });
+
+  eraseBtn.addEventListener('mousedown', function (e) {
+    e.preventDefault();
+    eraseColor();
+  });
+
+  /* ── Touch support ── */
+  document.addEventListener('touchend', function () {
+    clearTimeout(hideDelay);
+    setTimeout(onSelectionChange, 80);
+  });
+
+})();
+// ════════════════════════════════════════════════
+
 </script>
+
+  <button class="hl-btn erase"  onclick="removeHL()" title="Xóa highlight">✕ Xóa</button>
+</div>
+
+
+<div id="hl-toolbar">
+  <div class="hl-swatch s-yellow" data-cls="hy" title="Vàng"></div>
+  <div class="hl-swatch s-green"  data-cls="hg" title="Xanh lá"></div>
+  <div class="hl-swatch s-pink"   data-cls="hp" title="Hồng"></div>
+  <div class="hl-swatch s-blue"   data-cls="hb" title="Xanh dương"></div>
+  <div class="hl-div"></div>
+  <button class="hl-erase" id="hl-erase-btn">✕ Xóa</button>
+</div>
+
 </body>
 </html>
